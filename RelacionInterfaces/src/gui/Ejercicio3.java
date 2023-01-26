@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Ejercicio3 extends JFrame {
 
@@ -25,6 +27,7 @@ public class Ejercicio3 extends JFrame {
 	private Ejercicio3 ventana;
 	
 	private int numIntentos;
+	private JButton btnAceptar;
 
 	/**
 	 * Launch the application.
@@ -62,6 +65,14 @@ public class Ejercicio3 extends JFrame {
 		contentPane.add(lblNewLabel, "cell 1 1,alignx trailing");
 		
 		txtUsuario = new JTextField();
+		txtUsuario.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+					txtPassword.requestFocusInWindow();
+				}
+			}
+		});
 		contentPane.add(txtUsuario, "cell 2 1,growx");
 		txtUsuario.setColumns(10);
 		
@@ -70,11 +81,27 @@ public class Ejercicio3 extends JFrame {
 		contentPane.add(lblNewLabel_1, "cell 1 3,alignx trailing");
 		
 		txtPassword = new JTextField();
+		txtPassword.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+					btnAceptar.requestFocusInWindow();
+				}
+			}
+		});
 		contentPane.add(txtPassword, "cell 2 3,growx");
 		txtPassword.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Aceptar");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnAceptar = new JButton("Aceptar");
+		btnAceptar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+					btnAceptar.doClick();
+				}
+			}
+		});
+		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				login();
 //				JOptionPane.showMessageDialog(ventana, 
@@ -82,8 +109,10 @@ public class Ejercicio3 extends JFrame {
 //						JOptionPane.ERROR_MESSAGE);
 			}
 		});
-		contentPane.add(btnNewButton, "cell 2 6,alignx right");
+		contentPane.add(btnAceptar, "cell 2 6,alignx right");
 		ventana=this;
+		
+		//this.getRootPane().setDefaultButton(btnAceptar);
 	}
 
 	protected void login() {
