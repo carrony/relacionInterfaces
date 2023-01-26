@@ -15,12 +15,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JPasswordField;
 
 public class Ejercicio3 extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsuario;
-	private JTextField txtPassword;
+	private JPasswordField txtPassword;
 	
 	private String usuario;
 	private String password;
@@ -80,15 +81,7 @@ public class Ejercicio3 extends JFrame {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		contentPane.add(lblNewLabel_1, "cell 1 3,alignx trailing");
 		
-		txtPassword = new JTextField();
-		txtPassword.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode()==KeyEvent.VK_ENTER) {
-					btnAceptar.requestFocusInWindow();
-				}
-			}
-		});
+		txtPassword = new JPasswordField();
 		contentPane.add(txtPassword, "cell 2 3,growx");
 		txtPassword.setColumns(10);
 		
@@ -119,7 +112,7 @@ public class Ejercicio3 extends JFrame {
 		
 		
 		String user= txtUsuario.getText();
-		String pass= txtPassword.getText();
+		String pass= new String(txtPassword.getPassword());
 		
 		if (user==null || user.isBlank() ||
 			pass==null || pass.isBlank()) {
