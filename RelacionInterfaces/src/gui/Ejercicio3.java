@@ -23,6 +23,8 @@ public class Ejercicio3 extends JFrame {
 	private String usuario;
 	private String password;
 	private Ejercicio3 ventana;
+	
+	private int numIntentos;
 
 	/**
 	 * Launch the application.
@@ -44,6 +46,7 @@ public class Ejercicio3 extends JFrame {
 	 * Create the frame.
 	 */
 	public Ejercicio3() {
+		this.numIntentos=3;
 		this.usuario="David";
 		this.password="1234";
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,6 +87,8 @@ public class Ejercicio3 extends JFrame {
 	}
 
 	protected void login() {
+		
+		
 		String user= txtUsuario.getText();
 		String pass= txtPassword.getText();
 		
@@ -99,10 +104,16 @@ public class Ejercicio3 extends JFrame {
 					"Login correcto. Bienvenido", "Inicio de sesión correcto", 
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
+			numIntentos--;
 			JOptionPane.showMessageDialog(ventana, 
-					"Usuario/contraseña incorrecta", 
+					"Usuario/contraseña incorrecta\nTe quedan "
+					+numIntentos+" intentos", 
 					"Inicio de sesión incorrecto", 
 					JOptionPane.ERROR_MESSAGE);
+			
+			if (numIntentos<=0) {
+				System.exit(0);
+			}
 		}
 	}
 
