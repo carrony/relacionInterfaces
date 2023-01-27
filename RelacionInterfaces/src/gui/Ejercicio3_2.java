@@ -16,7 +16,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Ejercicio4 extends JFrame {
+public class Ejercicio3_2 extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNombre;
@@ -33,7 +33,7 @@ public class Ejercicio4 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ejercicio4 frame = new Ejercicio4();
+					Ejercicio3_2 frame = new Ejercicio3_2();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +45,7 @@ public class Ejercicio4 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Ejercicio4() {
+	public Ejercicio3_2() {
 		setTitle("CáLCULO DE PROMEDIO");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
