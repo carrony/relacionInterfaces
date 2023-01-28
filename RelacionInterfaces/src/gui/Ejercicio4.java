@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Ejericio4 extends JFrame {
+public class Ejercicio4 extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btnIzquierda;
@@ -23,7 +23,7 @@ public class Ejericio4 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ejericio4 frame = new Ejericio4();
+					Ejercicio4 frame = new Ejercicio4();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +35,7 @@ public class Ejericio4 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Ejericio4() {
+	public Ejercicio4() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
