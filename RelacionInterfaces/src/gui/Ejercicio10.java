@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-public class Ejercicio11 extends JFrame {
+public class Ejercicio10 extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -48,7 +48,7 @@ public class Ejercicio11 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ejercicio11 frame = new Ejercicio11();
+					Ejercicio10 frame = new Ejercicio10();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,7 +60,7 @@ public class Ejercicio11 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Ejercicio11() {
+	public Ejercicio10() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -84,7 +84,7 @@ public class Ejercicio11 extends JFrame {
 		panel.add(lblNewLabel_1, "cell 0 0,alignx trailing");
 		
 		comboMoneda1 = new JComboBox();
-		comboMoneda1.setModel(new DefaultComboBoxModel(listaMonedas));
+		comboMoneda1.setModel(new DefaultComboBoxModel(new String[] {"Dólares", "Euros", "Yenes", "Bitcoin"}));
 		panel.add(comboMoneda1, "cell 1 0 3 1,growx");
 		
 		JLabel lblNewLabel_2 = new JLabel("Cantidad:");
@@ -108,7 +108,7 @@ public class Ejercicio11 extends JFrame {
 		panel.add(lblNewLabel_3, "cell 0 5,alignx trailing");
 		
 		comboMoneda2 = new JComboBox();
-		comboMoneda2.setModel(new DefaultComboBoxModel(listaMonedas));
+		comboMoneda2.setModel(new DefaultComboBoxModel(new String[] {"Dólares", "Euros", "Yenes", "Bitcoin"}));
 		panel.add(comboMoneda2, "cell 1 5 3 1,growx");
 		
 		JLabel lblNewLabel_4 = new JLabel("Resultado:");
@@ -127,6 +127,29 @@ public class Ejercicio11 extends JFrame {
 		int i = comboMoneda1.getSelectedIndex();
 		int j = comboMoneda2.getSelectedIndex();
 		
-		lblResultado.setText(String.format("%.5f", dato*matrizCotizaciones[i][j] ));
+		String monedaOrigen = (String) comboMoneda1.getSelectedItem();
+		String monedaDestino = (String) comboMoneda2.getSelectedItem();
+		
+	/*	if (monedaOrigen.equals(monedaDestino)) {
+			JOptionPane.showMessageDialog(null, 
+					"Debe seleccionar dos monedas diferentes");
+			return;
+		}
+		
+		if (monedaOrigen.equals("Dolares")) {
+			if (monedaDestino.equals("Euros")) {
+				lblResultado.setText(String.format("%.2f",dato*dolarAEuro));
+			}
+			if (monedaDestino.equals("Yenes")) {
+				lblResultado.setText(String.format("%.2f",dato*dolarAYenes));
+			}
+			if (monedaDestino.equals("Bitcoin")) {
+				lblResultado.setText(String.format("%.2f",dato*dolarABitcoin));
+			}
+		}*/
+		
+		
+		lblResultado.setText(String.format("%.5f", 
+					dato*matrizCotizaciones[i][j] ));
 	}
 }
