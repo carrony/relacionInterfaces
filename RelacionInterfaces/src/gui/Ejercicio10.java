@@ -18,26 +18,27 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
-public class Ejercicio10 extends JFrame {
+public class Ejercicio11 extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private final ButtonGroup grupoMonedas1 = new ButtonGroup();
-	private JRadioButton rdbtnDolares2;
-	private JRadioButton rdbtnEuros2;
-	private JRadioButton rdbtnYenes2;
 	private JLabel lblResultado;
-	private JRadioButton rdbtnDolares1;
-	private JRadioButton rdbtnEuros1;
-	private JRadioButton rdbtnYenes1;
 	private final ButtonGroup grupoMonedas2 = new ButtonGroup();
 	
 	private double matrizCotizaciones [][]= {
-			{1, 0.8989, 115.66},
-			{1.1131, 1, 128.75},
-			{0.08645, 0.00777, 1}
+			{1, 0.8989, 115.66, 0,000027},
+			{1.1131, 1, 128.75, 0,000030},
+			{0.08645, 0.00777, 1, 0,00000023},
+			{37045.92,33189.29,434782608.70,1}
 	};
+	
+	private String listaMonedas [] = {"D�lares", "Euros", "Yenes", "Bitcoin"};
+	private JComboBox comboMoneda1;
+	private JComboBox comboMoneda2;
 
 
 	/**
@@ -47,7 +48,7 @@ public class Ejercicio10 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ejercicio10 frame = new Ejercicio10();
+					Ejercicio11 frame = new Ejercicio11();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,7 +60,7 @@ public class Ejercicio10 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Ejercicio10() {
+	public Ejercicio11() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -76,30 +77,15 @@ public class Ejercicio10 extends JFrame {
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[][][][grow]", "[][][][][][][]"));
+		panel.setLayout(new MigLayout("", "[][grow][][grow]", "[][][][][][][]"));
 		
 		JLabel lblNewLabel_1 = new JLabel("De:");
 		lblNewLabel_1.setFont(new Font("Dialog", Font.PLAIN, 12));
-		panel.add(lblNewLabel_1, "cell 0 0,alignx right");
+		panel.add(lblNewLabel_1, "cell 0 0,alignx trailing");
 		
-		rdbtnDolares1 = new JRadioButton("D\u00F3lares");
-		rdbtnDolares1.setActionCommand("0");
-		rdbtnDolares1.setFont(new Font("Dialog", Font.PLAIN, 12));
-		rdbtnDolares1.setSelected(true);
-		grupoMonedas1.add(rdbtnDolares1);
-		panel.add(rdbtnDolares1, "cell 1 0");
-		
-		rdbtnEuros1 = new JRadioButton("Euros");
-		rdbtnEuros1.setActionCommand("1");
-		rdbtnEuros1.setFont(new Font("Dialog", Font.PLAIN, 12));
-		grupoMonedas1.add(rdbtnEuros1);
-		panel.add(rdbtnEuros1, "cell 2 0");
-		
-		rdbtnYenes1 = new JRadioButton("Yenes");
-		rdbtnYenes1.setActionCommand("2");
-		rdbtnYenes1.setFont(new Font("Dialog", Font.PLAIN, 12));
-		grupoMonedas1.add(rdbtnYenes1);
-		panel.add(rdbtnYenes1, "cell 3 0,alignx left");
+		comboMoneda1 = new JComboBox();
+		comboMoneda1.setModel(new DefaultComboBoxModel(listaMonedas));
+		panel.add(comboMoneda1, "cell 1 0 3 1,growx");
 		
 		JLabel lblNewLabel_2 = new JLabel("Cantidad:");
 		lblNewLabel_2.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -119,25 +105,11 @@ public class Ejercicio10 extends JFrame {
 		
 		JLabel lblNewLabel_3 = new JLabel("A:");
 		lblNewLabel_3.setFont(new Font("Dialog", Font.PLAIN, 12));
-		panel.add(lblNewLabel_3, "cell 0 5,alignx right");
+		panel.add(lblNewLabel_3, "cell 0 5,alignx trailing");
 		
-		rdbtnDolares2 = new JRadioButton("D\u00F3lares");
-		rdbtnDolares2.setActionCommand("0");
-		grupoMonedas2.add(rdbtnDolares2);
-		rdbtnDolares2.setFont(new Font("Dialog", Font.PLAIN, 12));
-		panel.add(rdbtnDolares2, "cell 1 5");
-		
-		rdbtnEuros2 = new JRadioButton("Euros");
-		rdbtnEuros2.setActionCommand("1");
-		grupoMonedas2.add(rdbtnEuros2);
-		rdbtnEuros2.setFont(new Font("Dialog", Font.PLAIN, 12));
-		panel.add(rdbtnEuros2, "cell 2 5");
-		
-		rdbtnYenes2 = new JRadioButton("Yenes");
-		rdbtnYenes2.setActionCommand("2");
-		grupoMonedas2.add(rdbtnYenes2);
-		rdbtnYenes2.setFont(new Font("Dialog", Font.PLAIN, 12));
-		panel.add(rdbtnYenes2, "cell 3 5");
+		comboMoneda2 = new JComboBox();
+		comboMoneda2.setModel(new DefaultComboBoxModel(listaMonedas));
+		panel.add(comboMoneda2, "cell 1 5 3 1,growx");
 		
 		JLabel lblNewLabel_4 = new JLabel("Resultado:");
 		lblNewLabel_4.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -152,9 +124,9 @@ public class Ejercicio10 extends JFrame {
 
 		double dato = Double.parseDouble(textField.getText()); 
 		
-		int i = Integer.parseInt(grupoMonedas1.getSelection().getActionCommand());
-		int j = Integer.parseInt(grupoMonedas2.getSelection().getActionCommand());
+		int i = comboMoneda1.getSelectedIndex();
+		int j = comboMoneda2.getSelectedIndex();
 		
-		lblResultado.setText(String.format("%.2f", dato*matrizCotizaciones[i][j] ));
+		lblResultado.setText(String.format("%.5f", dato*matrizCotizaciones[i][j] ));
 	}
 }
