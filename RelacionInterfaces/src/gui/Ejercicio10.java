@@ -33,12 +33,10 @@ public class Ejercicio10 extends JFrame {
 	private JRadioButton rdbtnYenes1;
 	private final ButtonGroup grupoMonedas2 = new ButtonGroup();
 	
-
-	
 	private double matrizCotizaciones [][]= {
-			{1, 0.92, 129.88},
-			{1.09, 1, 141.22},
-			{0.0077, 0.0071, 1}
+			{1, 0.8989, 115.66},
+			{1.1131, 1, 128.75},
+			{0.08645, 0.00777, 1}
 	};
 
 
@@ -130,7 +128,6 @@ public class Ejercicio10 extends JFrame {
 		panel.add(rdbtnDolares2, "cell 1 5");
 		
 		rdbtnEuros2 = new JRadioButton("Euros");
-		rdbtnEuros2.setSelected(true);
 		rdbtnEuros2.setActionCommand("1");
 		grupoMonedas2.add(rdbtnEuros2);
 		rdbtnEuros2.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -152,15 +149,12 @@ public class Ejercicio10 extends JFrame {
 	}
 
 	public void convertir() {
-		try {
-			double dato = Double.parseDouble(textField.getText()); 
-			
-			int i = Integer.parseInt(grupoMonedas1.getSelection().getActionCommand());
-			int j = Integer.parseInt(grupoMonedas2.getSelection().getActionCommand());
-			
-			lblResultado.setText(String.format("%.2f", dato*matrizCotizaciones[i][j] ));
-		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(null, "Debe introducir un número correcto");
-		}
+
+		double dato = Double.parseDouble(textField.getText()); 
+		
+		int i = Integer.parseInt(grupoMonedas1.getSelection().getActionCommand());
+		int j = Integer.parseInt(grupoMonedas2.getSelection().getActionCommand());
+		
+		lblResultado.setText(String.format("%.2f", dato*matrizCotizaciones[i][j] ));
 	}
 }
